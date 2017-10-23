@@ -1,4 +1,5 @@
 const express = require('express');
+var config = require('./config');
 const app = express();
 
 const ArtistAPI = {
@@ -26,8 +27,7 @@ const BlogAPI = {
 };
 
 var redis = require("redis"),
-    // client = redis.createClient('redis://:wearethecerealkings@redis-14234.c8.us-east-1-3.ec2.cloud.redislabs.com:14234');
-    client = redis.createClient('redis://:wearethecerealkings@redis-17643.c11.us-east-1-3.ec2.cloud.redislabs.com:17643');
+    client = redis.createClient('redis://:' + config.redis.password + '@' + config.redis.uri + ':' + config.redis.port);
 
 client.on('connect', function() {
 	console.log('Connected to redis db!');
@@ -52,6 +52,6 @@ app.get('/', function(req, res) {
 	});
 })
 
-app.listen(3001, function() {
-	console.log('TMS server listening on port 3001!');
+app.listen(config.web.port, function() {
+	console.log('TMS server listening on port ' + config.web.port + '!');
 })
