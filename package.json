@@ -1,0 +1,13 @@
+{
+  "name": "tms-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "redis": "^2.7.1"
+  },
+  "scripts": {
+	  "start": "node server.js"
+  }
+}
